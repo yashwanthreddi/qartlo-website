@@ -18,8 +18,8 @@ export default function QartloHome() {
   const statsRef = useRef(null);
   const statsAnimated = useRef(false);
 
-  const goLogin = () => router.push("/login");
-  const goSignup = () => router.push("/signup");
+  const goLogin = () => router.push("https://app.qartlo.com/login");
+  const goSignup = () => router.push("https://app.qartlo.com/signup");
 
   const features = [
     {
