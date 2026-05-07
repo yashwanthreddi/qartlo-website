@@ -18,9 +18,104 @@ export default function QartloHome() {
   const statsRef = useRef(null);
   const statsAnimated = useRef(false);
 
+  const goLogin = () => router.push("/login");
+  const goSignup = () => router.push("/signup");
+
+  const features = [
+    {
+      icon: "🚀",
+      title: "Fast Store Setup",
+      desc: "Create your branded online store quickly with a simple guided setup experience.",
+    },
+    {
+      icon: "📦",
+      title: "Product Management",
+      desc: "Add products, categories, prices, stock, images, and descriptions from one dashboard.",
+    },
+    {
+      icon: "🛒",
+      title: "Smooth Checkout",
+      desc: "Give customers a simple buying experience with cart, checkout, and order confirmation.",
+    },
+    {
+      icon: "💳",
+      title: "Online Payments",
+      desc: "Connect secure payment options and receive paid orders directly through your store.",
+    },
+    {
+      icon: "📊",
+      title: "Orders & Reports",
+      desc: "Track orders, customers, revenue, and store performance with clean business insights.",
+    },
+    {
+      icon: "🌐",
+      title: "Custom Domain Ready",
+      desc: "Use your own domain or subdomain and give every store a professional branded link.",
+    },
+  ];
+
+  const steps = [
+    {
+      num: "01",
+      title: "Create your account",
+      desc: "Sign up and open your Qartlo admin dashboard.",
+      icon: "👤",
+    },
+    {
+      num: "02",
+      title: "Build your store",
+      desc: "Add store details, branding, categories, and products.",
+      icon: "🏪",
+    },
+    {
+      num: "03",
+      title: "Share your store link",
+      desc: "Start selling with your Qartlo link or connect a custom domain.",
+      icon: "🔗",
+    },
+    {
+      num: "04",
+      title: "Manage orders",
+      desc: "Receive orders, check payments, and manage customers from one place.",
+      icon: "🎉",
+    },
+  ];
+
+  const whys = [
+    { icon: "⚡", text: "Quick setup for non-technical users" },
+    { icon: "🧩", text: "Everything managed from one dashboard" },
+    { icon: "📱", text: "Mobile-friendly storefront experience" },
+    { icon: "🔐", text: "Secure admin and payment-ready flow" },
+    { icon: "🌱", text: "Built to grow with your business" },
+  ];
+
+  const faqs = [
+    {
+      q: "How quickly can I launch my store?",
+      a: "You can create your account, add store details, upload products, and start sharing your store link quickly. The process is designed to be simple for business owners.",
+    },
+    {
+      q: "Do I need technical knowledge?",
+      a: "No. Qartlo is designed for business owners and teams who want to manage products, orders, customers, and store settings without complex technical work.",
+    },
+    {
+      q: "Can I use a custom domain?",
+      a: "Yes. You can connect a custom domain or subdomain to your store so customers can visit your business using a branded website link.",
+    },
+    {
+      q: "Can I accept online payments?",
+      a: "Yes. Qartlo can be connected with secure payment options so customers can complete purchases online.",
+    },
+    {
+      q: "Is Qartlo mobile-friendly?",
+      a: "Yes. The storefront and admin experience are designed to work smoothly on desktop, tablet, and mobile devices.",
+    },
+  ];
+
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
+    const onScroll = () => setScrolled(window.scrollY > 18);
     window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
@@ -32,7 +127,7 @@ export default function QartloHome() {
           if (entry.isIntersecting) entry.target.classList.add("in");
         });
       },
-      { threshold: 0.1 }
+      { threshold: 0.12 }
     );
 
     els.forEach((el) => obs.observe(el));
@@ -50,14 +145,15 @@ export default function QartloHome() {
 
           const animate = (key, target, decimals = 0) => {
             let current = 0;
+            const stepValue = target / 58;
 
             const step = () => {
-              current += target / 60;
+              current += stepValue;
               if (current >= target) current = target;
 
               setCounters((prev) => ({
                 ...prev,
-                [key]: parseFloat(current.toFixed(decimals)),
+                [key]: Number(current.toFixed(decimals)),
               }));
 
               if (current < target) requestAnimationFrame(step);
@@ -66,13 +162,13 @@ export default function QartloHome() {
             requestAnimationFrame(step);
           };
 
-          animate("stores", 12000);
-          animate("orders", 3500000);
-          animate("merchants", 8500);
+          animate("stores", 1000);
+          animate("orders", 150000);
+          animate("merchants", 850);
           animate("uptime", 99.9, 1);
         }
       },
-      { threshold: 0.3 }
+      { threshold: 0.35 }
     );
 
     obs.observe(el);
@@ -81,134 +177,22 @@ export default function QartloHome() {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setActiveStep((prev) => (prev + 1) % 4);
+      setActiveStep((prev) => (prev + 1) % steps.length);
     }, 2800);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [steps.length]);
 
   const fmtNum = (n) => {
-    if (n >= 1000000) return (n / 1000000).toFixed(1) + "M+";
-    if (n >= 1000) return Math.round(n / 1000) + "K+";
-    return Math.round(n) + "+";
+    if (n >= 1000000) return `${(n / 1000000).toFixed(1)}M+`;
+    if (n >= 1000) return `${Math.round(n / 1000)}K+`;
+    return `${Math.round(n)}+`;
   };
-
-  const features = [
-    {
-      icon: "🚀",
-      title: "Easy Store Setup",
-      desc: "Launch your online store in minutes with a simple and guided setup process.",
-    },
-    {
-      icon: "📦",
-      title: "Product Management",
-      desc: "Add, edit, organize, and manage products, categories, pricing, and images from one place.",
-    },
-    {
-      icon: "🛒",
-      title: "Smart Checkout",
-      desc: "Give your customers a fast and seamless checkout experience that improves conversions.",
-    },
-    {
-      icon: "💳",
-      title: "Secure Payments",
-      desc: "Accept online payments securely with trusted payment integrations built for modern commerce.",
-    },
-    {
-      icon: "📊",
-      title: "Orders & Customers",
-      desc: "Track orders, manage customers, and stay in control of your store with a clean dashboard.",
-    },
-    {
-      icon: "📱",
-      title: "Mobile Ready",
-      desc: "Your store looks clean and works smoothly across desktop, tablet, and mobile devices.",
-    },
-  ];
-
-  const steps = [
-    {
-      num: "01",
-      title: "Create your store",
-      desc: "Set up your branded store in minutes with an easy onboarding flow.",
-      icon: "🏪",
-    },
-    {
-      num: "02",
-      title: "Add your products",
-      desc: "Upload products, pricing, descriptions, and categories with ease.",
-      icon: "📦",
-    },
-    {
-      num: "03",
-      title: "Share your link",
-      desc: "Get your store URL and start sharing it with customers instantly.",
-      icon: "🔗",
-    },
-    {
-      num: "04",
-      title: "Start receiving orders",
-      desc: "Receive orders, track payments, and manage everything from one dashboard.",
-      icon: "🎉",
-    },
-  ];
-
-  const whys = [
-    { icon: "✦", text: "Simple and user-friendly interface" },
-    { icon: "◈", text: "Designed for modern online businesses" },
-    { icon: "▲", text: "Scalable for growing stores" },
-    { icon: "🔒", text: "Secure and reliable platform" },
-    { icon: "⚙️", text: "Complete control over your store" },
-  ];
-
-  const plans = [
-   
-    
-    {
-      name: "Enterprise",
-      price: "Contact Us",
-      period: "/mo",
-      desc: "Advanced power for high-volume sellers.",
-      perks: [
-        "Unlimited Stores",
-        "Unlimited Products",
-        "Dedicated Support",
-        "Real-time Reports",
-        "White-label Option",
-        "API Access",
-      ],
-      cta: "Contact Sales",
-      hot: false,
-    },
-  ];
-
-  const faqs = [
-    {
-      q: "How quickly can I launch my store?",
-      a: "Most stores can go live within minutes. You can create your store, add products, and start sharing your link without any complex setup.",
-    },
-    {
-      q: "Do I need technical knowledge?",
-      a: "No. Qartlo is built for business owners and teams who want a simple and clean way to launch online stores.",
-    },
-    {
-      q: "Can I accept online payments?",
-      a: "Yes. You can integrate payment options so your customers can pay online securely during checkout.",
-    },
-    {
-      q: "Can I manage multiple stores?",
-      a: "Yes. Higher plans support multiple stores with independent data, products, and branding.",
-    },
-    {
-      q: "Is Qartlo mobile-friendly?",
-      a: "Yes. Both the admin experience and storefront are designed to work well across devices.",
-    },
-  ];
 
   return (
     <>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
 
         * {
           box-sizing: border-box;
@@ -217,26 +201,22 @@ export default function QartloHome() {
         }
 
         :root {
-          --bg: #f3f8f7;
-          --bg-soft: #eef6f5;
+          --bg: #f5faf9;
           --surface: #ffffff;
-          --surface-2: #f8fbfb;
-          --border: #dbe7e5;
-          --border-soft: #e9f1ef;
-
+          --surface-soft: #f8fcfb;
+          --border: #dbe9e6;
+          --border-soft: #eaf2f0;
           --text: #0f172a;
-          --muted: #5f6f6d;
-          --muted-2: #7b8a88;
-
+          --muted: #61716f;
+          --muted-2: #81908e;
           --primary: #198f7d;
-          --primary-dark: #157868;
-          --primary-soft: #dff3ee;
-
-          --shadow-sm: 0 8px 24px rgba(15, 23, 42, 0.04);
-          --shadow-md: 0 18px 45px rgba(15, 23, 42, 0.08);
-          --radius-lg: 22px;
-          --radius-md: 16px;
-          --radius-sm: 12px;
+          --primary-dark: #107161;
+          --primary-soft: #dff5ef;
+          --shadow-sm: 0 10px 28px rgba(15, 23, 42, 0.05);
+          --shadow-md: 0 24px 70px rgba(15, 23, 42, 0.1);
+          --shadow-primary: 0 16px 34px rgba(25, 143, 125, 0.22);
+          --radius-xl: 34px;
+          --radius-lg: 26px;
           --container: 1180px;
         }
 
@@ -252,12 +232,17 @@ export default function QartloHome() {
           -webkit-font-smoothing: antialiased;
         }
 
+        button {
+          font-family: inherit;
+        }
+
         .page-shell {
           min-height: 100vh;
           background:
-            radial-gradient(circle at top left, rgba(25, 143, 125, 0.08), transparent 30%),
-            radial-gradient(circle at top right, rgba(25, 143, 125, 0.05), transparent 28%),
-            linear-gradient(180deg, #f4f8f8 0%, #f3f8f7 100%);
+            radial-gradient(circle at 12% 8%, rgba(25, 143, 125, 0.14), transparent 28%),
+            radial-gradient(circle at 88% 4%, rgba(15, 118, 110, 0.1), transparent 26%),
+            radial-gradient(circle at 50% 52%, rgba(25, 143, 125, 0.055), transparent 36%),
+            linear-gradient(180deg, #f7fbfb 0%, #f4faf8 52%, #f7fbfb 100%);
         }
 
         .container {
@@ -277,9 +262,9 @@ export default function QartloHome() {
         }
 
         .nav.scrolled {
-          background: rgba(243, 248, 247, 0.9);
+          background: rgba(245, 250, 249, 0.88);
           backdrop-filter: blur(18px);
-          border-bottom-color: var(--border);
+          border-bottom-color: rgba(219, 233, 230, 0.75);
         }
 
         .nav-inner {
@@ -295,22 +280,24 @@ export default function QartloHome() {
           align-items: center;
           gap: 12px;
           font-size: 1.35rem;
-          font-weight: 800;
-          letter-spacing: -0.02em;
+          font-weight: 900;
+          letter-spacing: -0.035em;
           cursor: pointer;
+          color: var(--text);
+          user-select: none;
         }
 
         .logo-mark {
           width: 42px;
           height: 42px;
-          border-radius: 14px;
-          background: var(--primary-soft);
-          color: var(--primary);
+          border-radius: 15px;
+          background: linear-gradient(145deg, var(--primary), #21b69f);
+          color: #ffffff;
           display: flex;
           align-items: center;
           justify-content: center;
-          font-weight: 800;
-          box-shadow: inset 0 0 0 1px rgba(25, 143, 125, 0.08);
+          font-weight: 900;
+          box-shadow: 0 12px 28px rgba(25, 143, 125, 0.22);
         }
 
         .nav-links {
@@ -323,13 +310,13 @@ export default function QartloHome() {
         .nav-links a {
           text-decoration: none;
           color: var(--muted);
-          font-size: 0.95rem;
-          font-weight: 500;
+          font-size: 0.94rem;
+          font-weight: 650;
           transition: color 0.2s ease;
         }
 
         .nav-links a:hover {
-          color: var(--text);
+          color: var(--primary);
         }
 
         .nav-actions {
@@ -342,48 +329,60 @@ export default function QartloHome() {
           border: none;
           outline: none;
           cursor: pointer;
-          transition: all 0.2s ease;
-          font-family: inherit;
-          font-weight: 600;
-          border-radius: 14px;
+          transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+          font-weight: 800;
+          border-radius: 15px;
           display: inline-flex;
           align-items: center;
           justify-content: center;
-          gap: 8px;
+          gap: 9px;
           text-decoration: none;
+          white-space: nowrap;
         }
 
         .btn-outline {
-          background: #fff;
+          background: rgba(255, 255, 255, 0.84);
           color: var(--text);
           border: 1px solid var(--border);
           padding: 11px 18px;
+          box-shadow: 0 8px 20px rgba(15, 23, 42, 0.035);
         }
 
         .btn-outline:hover {
-          background: var(--surface-2);
-        }
-
-        .btn-primary {
-          background: var(--primary);
-          color: white;
-          padding: 11px 18px;
-          box-shadow: 0 10px 24px rgba(25, 143, 125, 0.18);
-        }
-
-        .btn-primary:hover {
-          background: var(--primary-dark);
+          background: #ffffff;
+          border-color: rgba(25, 143, 125, 0.22);
           transform: translateY(-1px);
         }
 
+        .btn-primary {
+          background: linear-gradient(135deg, var(--primary), #12a58f);
+          color: white;
+          padding: 11px 18px;
+          box-shadow: var(--shadow-primary);
+        }
+
+        .btn-primary:hover {
+          background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+          transform: translateY(-2px);
+          box-shadow: 0 20px 40px rgba(25, 143, 125, 0.28);
+        }
+
+        .btn-lg {
+          padding: 16px 24px;
+          font-size: 0.98rem;
+          border-radius: 17px;
+        }
+
         .hero {
-          padding: 56px 0 72px;
+          padding: 66px 0 84px;
+          position: relative;
         }
 
         .hero-grid {
+          position: relative;
           display: grid;
-          grid-template-columns: 1.1fr 0.9fr;
-          gap: 56px;
+          grid-template-columns: 1.05fr 0.95fr;
+          gap: 52px;
           align-items: center;
         }
 
@@ -391,23 +390,25 @@ export default function QartloHome() {
           display: inline-flex;
           align-items: center;
           gap: 10px;
-          background: var(--primary-soft);
-          color: var(--primary);
+          background: rgba(223, 245, 239, 0.82);
+          color: var(--primary-dark);
           border: 1px solid rgba(25, 143, 125, 0.12);
           border-radius: 999px;
-          padding: 8px 14px;
+          padding: 9px 15px;
           font-size: 0.84rem;
-          font-weight: 700;
+          font-weight: 850;
           margin-bottom: 24px;
+          box-shadow: 0 8px 22px rgba(25, 143, 125, 0.08);
         }
 
         .hero-title {
-          font-size: clamp(2.5rem, 5vw, 4.6rem);
-          line-height: 1.04;
-          letter-spacing: -0.05em;
-          font-weight: 800;
-          max-width: 680px;
-          margin-bottom: 20px;
+          font-size: clamp(2.65rem, 5.3vw, 5rem);
+          line-height: 0.99;
+          letter-spacing: -0.07em;
+          font-weight: 900;
+          max-width: 720px;
+          margin-bottom: 22px;
+          color: var(--text);
         }
 
         .hero-title .accent {
@@ -416,9 +417,9 @@ export default function QartloHome() {
 
         .hero-sub {
           font-size: 1.08rem;
-          line-height: 1.8;
+          line-height: 1.85;
           color: var(--muted);
-          max-width: 640px;
+          max-width: 650px;
           margin-bottom: 32px;
         }
 
@@ -426,116 +427,198 @@ export default function QartloHome() {
           display: flex;
           flex-wrap: wrap;
           gap: 14px;
-          margin-bottom: 36px;
+          margin-bottom: 34px;
         }
 
-        .btn-lg {
-          padding: 15px 24px;
-          font-size: 0.98rem;
-          border-radius: 16px;
-        }
-
-        .hero-stats {
+        .hero-trust {
           display: flex;
+          align-items: center;
           flex-wrap: wrap;
-          gap: 28px;
-        }
-
-        .hero-stat {
-          min-width: 120px;
-        }
-
-        .hero-stat strong {
-          display: block;
-          font-size: 1.4rem;
-          letter-spacing: -0.03em;
-          margin-bottom: 4px;
-        }
-
-        .hero-stat span {
+          gap: 12px;
           color: var(--muted);
           font-size: 0.92rem;
+          font-weight: 650;
+        }
+
+        .trust-pill {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          padding: 9px 12px;
+          border-radius: 999px;
+          background: rgba(255, 255, 255, 0.72);
+          border: 1px solid var(--border-soft);
         }
 
         .hero-card {
-          background: var(--surface);
-          border: 1px solid var(--border-soft);
-          border-radius: 30px;
-          padding: 24px;
+          background: rgba(255, 255, 255, 0.92);
+          border: 1px solid rgba(234, 242, 240, 0.95);
+          border-radius: var(--radius-xl);
+          padding: 20px;
           box-shadow: var(--shadow-md);
+          backdrop-filter: blur(18px);
         }
 
-        .hero-card-top {
+        .dashboard-card {
+          border-radius: 28px;
+          overflow: hidden;
+          border: 1px solid var(--border-soft);
+          background: #ffffff;
+        }
+
+        .dashboard-top {
+          padding: 18px;
           display: flex;
           align-items: center;
-          gap: 14px;
-          margin-bottom: 22px;
+          justify-content: space-between;
+          border-bottom: 1px solid var(--border-soft);
+          background: linear-gradient(180deg, #ffffff, #f8fcfb);
         }
 
-        .hero-card-icon {
-          width: 54px;
-          height: 54px;
-          border-radius: 18px;
+        .dash-dots {
+          display: flex;
+          align-items: center;
+          gap: 7px;
+        }
+
+        .dot {
+          width: 10px;
+          height: 10px;
+          border-radius: 999px;
+          background: #d7e5e2;
+        }
+
+        .dash-label {
+          font-size: 0.82rem;
+          font-weight: 850;
+          color: var(--primary-dark);
+          background: var(--primary-soft);
+          padding: 7px 11px;
+          border-radius: 999px;
+        }
+
+        .dashboard-body {
+          padding: 22px;
+        }
+
+        .dash-welcome {
+          display: flex;
+          align-items: flex-start;
+          justify-content: space-between;
+          gap: 16px;
+          margin-bottom: 18px;
+        }
+
+        .dash-welcome h3 {
+          font-size: 1.3rem;
+          letter-spacing: -0.035em;
+          margin-bottom: 6px;
+        }
+
+        .dash-welcome p {
+          color: var(--muted);
+          font-size: 0.9rem;
+          line-height: 1.55;
+        }
+
+        .dash-icon {
+          width: 50px;
+          height: 50px;
+          border-radius: 17px;
           background: var(--primary-soft);
           color: var(--primary);
           display: flex;
           align-items: center;
           justify-content: center;
-          font-size: 1.3rem;
-        }
-
-        .hero-card-title {
           font-size: 1.35rem;
-          font-weight: 800;
-          letter-spacing: -0.03em;
+          flex-shrink: 0;
         }
 
-        .hero-card-sub {
-          color: var(--muted);
-          font-size: 0.96rem;
-          line-height: 1.7;
-        }
-
-        .hero-mini-grid {
+        .metric-grid {
           display: grid;
-          grid-template-columns: repeat(2, 1fr);
-          gap: 14px;
-          margin-top: 24px;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 12px;
+          margin-bottom: 14px;
         }
 
-        .hero-mini-card {
-          background: var(--surface-2);
+        .metric-card {
+          background: var(--surface-soft);
           border: 1px solid var(--border-soft);
           border-radius: 18px;
-          padding: 18px;
+          padding: 15px;
         }
 
-        .hero-mini-card strong {
+        .metric-card span {
+          color: var(--muted-2);
+          font-size: 0.76rem;
+          font-weight: 750;
           display: block;
-          font-size: 1rem;
-          margin-bottom: 6px;
+          margin-bottom: 7px;
         }
 
-        .hero-mini-card span {
-          color: var(--muted);
-          font-size: 0.88rem;
-          line-height: 1.5;
+        .metric-card strong {
+          font-size: 1.05rem;
+          letter-spacing: -0.035em;
+        }
+
+        .chart-box {
+          background: linear-gradient(180deg, #f9fcfb, #ffffff);
+          border: 1px solid var(--border-soft);
+          border-radius: 22px;
+          padding: 18px;
+          margin-top: 14px;
+        }
+
+        .chart-head {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 16px;
+        }
+
+        .chart-head strong {
+          font-size: 0.95rem;
+        }
+
+        .chart-head span {
+          color: var(--primary);
+          font-weight: 850;
+          font-size: 0.85rem;
+        }
+
+        .fake-chart {
+          height: 112px;
+          border-radius: 16px;
+          background:
+            linear-gradient(to right, rgba(219, 233, 230, 0.5) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(219, 233, 230, 0.5) 1px, transparent 1px),
+            linear-gradient(180deg, rgba(25, 143, 125, 0.08), rgba(25, 143, 125, 0.02));
+          background-size: 44px 100%, 100% 28px, 100% 100%;
+          position: relative;
+          overflow: hidden;
+        }
+
+        .fake-chart svg {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
         }
 
         .section {
-          padding: 84px 0;
+          padding: 86px 0;
         }
 
         .section-soft {
-          background: rgba(255, 255, 255, 0.45);
-          border-top: 1px solid rgba(219, 231, 229, 0.7);
-          border-bottom: 1px solid rgba(219, 231, 229, 0.7);
+          background: rgba(255, 255, 255, 0.5);
+          border-top: 1px solid rgba(219, 233, 230, 0.72);
+          border-bottom: 1px solid rgba(219, 233, 230, 0.72);
         }
 
         .section-header {
           text-align: center;
-          max-width: 740px;
-          margin: 0 auto 46px;
+          max-width: 760px;
+          margin: 0 auto 48px;
         }
 
         .eyebrow {
@@ -543,19 +626,19 @@ export default function QartloHome() {
           align-items: center;
           justify-content: center;
           background: var(--primary-soft);
-          color: var(--primary);
+          color: var(--primary-dark);
           padding: 8px 14px;
           border-radius: 999px;
           font-size: 0.8rem;
-          font-weight: 700;
+          font-weight: 900;
           margin-bottom: 16px;
         }
 
         .section-title {
-          font-size: clamp(2rem, 4vw, 3rem);
-          line-height: 1.12;
-          letter-spacing: -0.04em;
-          font-weight: 800;
+          font-size: clamp(2rem, 4vw, 3.08rem);
+          line-height: 1.1;
+          letter-spacing: -0.055em;
+          font-weight: 900;
           margin-bottom: 14px;
         }
 
@@ -572,9 +655,9 @@ export default function QartloHome() {
         }
 
         .stat-card {
-          background: var(--surface);
+          background: rgba(255, 255, 255, 0.9);
           border: 1px solid var(--border-soft);
-          border-radius: 22px;
+          border-radius: 24px;
           padding: 28px 22px;
           box-shadow: var(--shadow-sm);
           text-align: center;
@@ -583,8 +666,8 @@ export default function QartloHome() {
         .stat-card strong {
           display: block;
           font-size: 2rem;
-          font-weight: 800;
-          letter-spacing: -0.04em;
+          font-weight: 900;
+          letter-spacing: -0.045em;
           margin-bottom: 8px;
           color: var(--primary);
         }
@@ -592,19 +675,20 @@ export default function QartloHome() {
         .stat-card span {
           color: var(--muted);
           font-size: 0.94rem;
+          font-weight: 650;
         }
 
         .about-grid {
           display: grid;
           grid-template-columns: 1fr 1fr;
-          gap: 28px;
+          gap: 24px;
           align-items: stretch;
         }
 
         .card {
-          background: var(--surface);
+          background: rgba(255, 255, 255, 0.9);
           border: 1px solid var(--border-soft);
-          border-radius: 26px;
+          border-radius: var(--radius-lg);
           box-shadow: var(--shadow-sm);
         }
 
@@ -613,9 +697,9 @@ export default function QartloHome() {
         }
 
         .about-card h3 {
-          font-size: 1.7rem;
-          line-height: 1.2;
-          letter-spacing: -0.03em;
+          font-size: 1.72rem;
+          line-height: 1.16;
+          letter-spacing: -0.045em;
           margin-bottom: 16px;
         }
 
@@ -635,24 +719,25 @@ export default function QartloHome() {
         }
 
         .big-mark {
-          width: 74px;
-          height: 74px;
-          border-radius: 22px;
-          background: var(--primary-soft);
-          color: var(--primary);
+          width: 76px;
+          height: 76px;
+          border-radius: 24px;
+          background: linear-gradient(145deg, var(--primary), #21b69f);
+          color: #ffffff;
           display: flex;
           align-items: center;
           justify-content: center;
           font-size: 2rem;
-          font-weight: 800;
+          font-weight: 900;
           margin-bottom: 20px;
+          box-shadow: var(--shadow-primary);
         }
 
         .about-feature-card h4 {
           font-size: 1.45rem;
           margin-bottom: 18px;
           line-height: 1.25;
-          letter-spacing: -0.03em;
+          letter-spacing: -0.04em;
         }
 
         .check-list {
@@ -677,7 +762,7 @@ export default function QartloHome() {
           border-radius: 999px;
           background: var(--primary-soft);
           color: var(--primary);
-          font-weight: 800;
+          font-weight: 900;
           display: inline-flex;
           align-items: center;
           justify-content: center;
@@ -693,59 +778,60 @@ export default function QartloHome() {
 
         .feature-card {
           padding: 26px;
-          border-radius: 24px;
-          background: var(--surface);
+          border-radius: 26px;
+          background: rgba(255, 255, 255, 0.92);
           border: 1px solid var(--border-soft);
           box-shadow: var(--shadow-sm);
-          transition: transform 0.2s ease, box-shadow 0.2s ease;
+          transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
         }
 
         .feature-card:hover {
-          transform: translateY(-4px);
+          transform: translateY(-5px);
           box-shadow: var(--shadow-md);
+          border-color: rgba(25, 143, 125, 0.18);
         }
 
         .feature-icon {
-          width: 52px;
-          height: 52px;
-          border-radius: 16px;
+          width: 54px;
+          height: 54px;
+          border-radius: 18px;
           background: var(--primary-soft);
           display: flex;
           align-items: center;
           justify-content: center;
-          font-size: 1.4rem;
+          font-size: 1.45rem;
           margin-bottom: 18px;
         }
 
         .feature-card h3 {
-          font-size: 1.05rem;
+          font-size: 1.07rem;
           margin-bottom: 10px;
-          letter-spacing: -0.02em;
+          letter-spacing: -0.025em;
         }
 
         .feature-card p {
           color: var(--muted);
-          line-height: 1.7;
+          line-height: 1.72;
           font-size: 0.95rem;
         }
 
         .how-grid {
           display: grid;
-          grid-template-columns: 1fr 1fr;
+          grid-template-columns: 0.94fr 1.06fr;
           gap: 26px;
           align-items: start;
         }
 
         .steps-panel {
-          background: var(--surface);
+          background: rgba(255, 255, 255, 0.9);
           border: 1px solid var(--border-soft);
-          border-radius: 26px;
+          border-radius: var(--radius-lg);
           padding: 18px;
           box-shadow: var(--shadow-sm);
         }
 
         .step-item {
-          border-radius: 18px;
+          border-radius: 20px;
           padding: 18px;
           cursor: pointer;
           transition: all 0.2s ease;
@@ -758,31 +844,31 @@ export default function QartloHome() {
 
         .step-item.active {
           background: var(--primary-soft);
-          border-color: rgba(25, 143, 125, 0.08);
+          border-color: rgba(25, 143, 125, 0.12);
         }
 
         .step-label {
           color: var(--primary);
           font-size: 0.78rem;
-          font-weight: 700;
-          margin-bottom: 6px;
+          font-weight: 900;
+          margin-bottom: 7px;
         }
 
         .step-title {
           font-size: 1.05rem;
-          font-weight: 700;
+          font-weight: 850;
           margin-bottom: 6px;
-          letter-spacing: -0.02em;
+          letter-spacing: -0.025em;
         }
 
         .step-desc {
           color: var(--muted);
           font-size: 0.95rem;
-          line-height: 1.7;
+          line-height: 1.72;
         }
 
         .mockup-card {
-          background: var(--surface);
+          background: rgba(255, 255, 255, 0.94);
           border: 1px solid var(--border-soft);
           border-radius: 30px;
           box-shadow: var(--shadow-md);
@@ -795,44 +881,48 @@ export default function QartloHome() {
           background: #fbfdfd;
           display: flex;
           align-items: center;
+          justify-content: space-between;
           gap: 8px;
         }
 
-        .dot {
-          width: 10px;
-          height: 10px;
+        .mockup-url {
+          color: var(--muted-2);
+          font-size: 0.84rem;
+          font-weight: 700;
+          background: var(--surface-soft);
+          padding: 8px 12px;
           border-radius: 999px;
-          background: #d8e3e1;
+          border: 1px solid var(--border-soft);
         }
 
         .mockup-body {
-          padding: 34px;
+          padding: 38px 34px;
           text-align: center;
         }
 
         .mockup-icon {
-          width: 86px;
-          height: 86px;
-          border-radius: 24px;
+          width: 90px;
+          height: 90px;
+          border-radius: 27px;
           margin: 0 auto 20px;
           background: var(--primary-soft);
           display: flex;
           align-items: center;
           justify-content: center;
-          font-size: 2.4rem;
+          font-size: 2.5rem;
         }
 
         .mockup-step {
           font-size: 0.8rem;
           color: var(--primary);
-          font-weight: 700;
+          font-weight: 900;
           margin-bottom: 8px;
         }
 
         .mockup-title {
-          font-size: 1.5rem;
-          font-weight: 800;
-          letter-spacing: -0.03em;
+          font-size: 1.55rem;
+          font-weight: 900;
+          letter-spacing: -0.045em;
           margin-bottom: 12px;
         }
 
@@ -840,7 +930,7 @@ export default function QartloHome() {
           color: var(--muted);
           font-size: 0.98rem;
           line-height: 1.8;
-          max-width: 420px;
+          max-width: 430px;
           margin: 0 auto;
         }
 
@@ -848,7 +938,7 @@ export default function QartloHome() {
           display: flex;
           justify-content: center;
           gap: 8px;
-          margin-top: 22px;
+          margin-top: 24px;
         }
 
         .prog button {
@@ -862,15 +952,16 @@ export default function QartloHome() {
         }
 
         .prog button.active {
-          width: 26px;
+          width: 30px;
           background: var(--primary);
-          border-radius: 999px;
         }
 
         .why-band {
-          background: linear-gradient(180deg, #e7f6f2 0%, #def2ed 100%);
-          border-top: 1px solid rgba(25, 143, 125, 0.08);
-          border-bottom: 1px solid rgba(25, 143, 125, 0.08);
+          background:
+            radial-gradient(circle at 18% 20%, rgba(255, 255, 255, 0.75), transparent 28%),
+            linear-gradient(180deg, #e6f6f2 0%, #dcf1ec 100%);
+          border-top: 1px solid rgba(25, 143, 125, 0.09);
+          border-bottom: 1px solid rgba(25, 143, 125, 0.09);
         }
 
         .why-grid {
@@ -880,16 +971,17 @@ export default function QartloHome() {
         }
 
         .why-card {
-          background: rgba(255, 255, 255, 0.72);
-          border: 1px solid rgba(25, 143, 125, 0.08);
-          border-radius: 20px;
-          padding: 22px 18px;
+          background: rgba(255, 255, 255, 0.76);
+          border: 1px solid rgba(25, 143, 125, 0.1);
+          border-radius: 22px;
+          padding: 23px 18px;
           text-align: center;
+          box-shadow: 0 10px 28px rgba(25, 143, 125, 0.06);
         }
 
         .why-card .icon {
           font-size: 1.5rem;
-          margin-bottom: 10px;
+          margin-bottom: 11px;
           display: block;
         }
 
@@ -897,103 +989,11 @@ export default function QartloHome() {
           font-size: 0.93rem;
           line-height: 1.55;
           color: #24423d;
-          font-weight: 600;
-        }
-
-        .pricing-grid {
-          display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: 18px;
-        }
-
-        .plan-card {
-          padding: 30px 26px;
-          border-radius: 26px;
-          background: var(--surface);
-          border: 1px solid var(--border-soft);
-          box-shadow: var(--shadow-sm);
-          position: relative;
-          transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .plan-card:hover {
-          transform: translateY(-4px);
-          box-shadow: var(--shadow-md);
-        }
-
-        .plan-card.hot {
-          border: 1px solid rgba(25, 143, 125, 0.18);
-          background: linear-gradient(180deg, #ffffff 0%, #f6fcfa 100%);
-        }
-
-        .hot-badge {
-          position: absolute;
-          top: -12px;
-          left: 24px;
-          background: var(--primary);
-          color: white;
-          font-size: 0.72rem;
-          font-weight: 700;
-          padding: 6px 12px;
-          border-radius: 999px;
-        }
-
-        .plan-card h3 {
-          font-size: 1.12rem;
-          margin-bottom: 8px;
-          letter-spacing: -0.02em;
-        }
-
-        .plan-card .desc {
-          color: var(--muted);
-          line-height: 1.6;
-          font-size: 0.92rem;
-          margin-bottom: 22px;
-        }
-
-        .price-line {
-          display: flex;
-          align-items: baseline;
-          gap: 4px;
-          margin-bottom: 22px;
-        }
-
-        .price-line strong {
-          font-size: 2.3rem;
-          font-weight: 800;
-          letter-spacing: -0.04em;
-          color: var(--text);
-        }
-
-        .price-line span {
-          color: var(--muted);
-        }
-
-        .perk-list {
-          list-style: none;
-          display: grid;
-          gap: 12px;
-          margin-bottom: 24px;
-        }
-
-        .perk-list li {
-          display: flex;
-          align-items: flex-start;
-          gap: 10px;
-          color: var(--muted);
-          font-size: 0.95rem;
-          line-height: 1.6;
-        }
-
-        .perk-list li::before {
-          content: "✓";
-          color: var(--primary);
-          font-weight: 800;
-          flex-shrink: 0;
+          font-weight: 750;
         }
 
         .faq-wrap {
-          max-width: 860px;
+          max-width: 880px;
           margin: 0 auto;
         }
 
@@ -1003,9 +1003,9 @@ export default function QartloHome() {
         }
 
         .faq-item {
-          background: var(--surface);
+          background: rgba(255, 255, 255, 0.94);
           border: 1px solid var(--border-soft);
-          border-radius: 20px;
+          border-radius: 22px;
           box-shadow: var(--shadow-sm);
           overflow: hidden;
         }
@@ -1017,7 +1017,7 @@ export default function QartloHome() {
           text-align: left;
           padding: 22px 22px;
           font-size: 1rem;
-          font-weight: 700;
+          font-weight: 850;
           color: var(--text);
           display: flex;
           align-items: center;
@@ -1028,7 +1028,7 @@ export default function QartloHome() {
 
         .faq-btn span:last-child {
           color: var(--primary);
-          font-size: 1.2rem;
+          font-size: 1.35rem;
           flex-shrink: 0;
         }
 
@@ -1043,29 +1043,34 @@ export default function QartloHome() {
         }
 
         .faq-answer.open {
-          max-height: 180px;
+          max-height: 220px;
           padding: 0 22px 22px;
         }
 
         .cta-box {
-          background: linear-gradient(180deg, #ffffff 0%, #f6fbfb 100%);
+          position: relative;
+          overflow: hidden;
+          background:
+            radial-gradient(circle at 18% 20%, rgba(25, 143, 125, 0.12), transparent 28%),
+            linear-gradient(180deg, #ffffff 0%, #f6fbfb 100%);
           border: 1px solid var(--border-soft);
-          border-radius: 32px;
-          padding: 56px 34px;
+          border-radius: 34px;
+          padding: 58px 34px;
           text-align: center;
           box-shadow: var(--shadow-md);
         }
 
         .cta-box h2 {
-          font-size: clamp(2rem, 4vw, 3rem);
-          line-height: 1.12;
-          letter-spacing: -0.04em;
+          font-size: clamp(2rem, 4vw, 3.06rem);
+          line-height: 1.1;
+          letter-spacing: -0.055em;
           margin-bottom: 14px;
+          font-weight: 900;
         }
 
         .cta-box p {
           color: var(--muted);
-          max-width: 640px;
+          max-width: 650px;
           margin: 0 auto 28px;
           line-height: 1.8;
           font-size: 1rem;
@@ -1083,16 +1088,16 @@ export default function QartloHome() {
         }
 
         .footer-card {
-          background: var(--surface);
+          background: rgba(255, 255, 255, 0.92);
           border: 1px solid var(--border-soft);
-          border-radius: 28px;
+          border-radius: 30px;
           box-shadow: var(--shadow-sm);
           padding: 34px 28px;
         }
 
         .footer-top {
           display: grid;
-          grid-template-columns: 1.6fr 1fr 1fr 1fr;
+          grid-template-columns: 1.7fr 1fr 1fr 1fr;
           gap: 28px;
           margin-bottom: 24px;
         }
@@ -1102,15 +1107,16 @@ export default function QartloHome() {
           align-items: center;
           gap: 12px;
           font-size: 1.25rem;
-          font-weight: 800;
+          font-weight: 900;
           margin-bottom: 16px;
+          letter-spacing: -0.035em;
         }
 
         .footer-brand-p {
           color: var(--muted);
           line-height: 1.8;
           font-size: 0.95rem;
-          max-width: 360px;
+          max-width: 370px;
         }
 
         .footer-title {
@@ -1119,7 +1125,7 @@ export default function QartloHome() {
           text-transform: uppercase;
           letter-spacing: 0.08em;
           margin-bottom: 14px;
-          font-weight: 700;
+          font-weight: 850;
         }
 
         .footer-links {
@@ -1128,14 +1134,21 @@ export default function QartloHome() {
           gap: 10px;
         }
 
-        .footer-links a {
+        .footer-links a,
+        .footer-link-btn {
           text-decoration: none;
           color: var(--muted);
           font-size: 0.95rem;
+          background: transparent;
+          border: 0;
+          cursor: pointer;
+          text-align: left;
+          padding: 0;
         }
 
-        .footer-links a:hover {
-          color: var(--text);
+        .footer-links a:hover,
+        .footer-link-btn:hover {
+          color: var(--primary);
         }
 
         .footer-bottom {
@@ -1183,8 +1196,7 @@ export default function QartloHome() {
             grid-template-columns: repeat(2, 1fr);
           }
 
-          .feature-grid,
-          .pricing-grid {
+          .feature-grid {
             grid-template-columns: 1fr 1fr;
           }
 
@@ -1206,24 +1218,16 @@ export default function QartloHome() {
             height: 74px;
           }
 
+          .nav-logo span {
+            font-size: 1.18rem;
+          }
+
           .hero {
-            padding: 32px 0 56px;
-          }
-
-          .stats-row,
-          .feature-grid,
-          .pricing-grid,
-          .why-grid,
-          .hero-mini-grid {
-            grid-template-columns: 1fr;
-          }
-
-          .section {
-            padding: 68px 0;
+            padding: 42px 0 60px;
           }
 
           .hero-title {
-            font-size: 2.4rem;
+            font-size: 2.55rem;
           }
 
           .hero-sub,
@@ -1234,8 +1238,19 @@ export default function QartloHome() {
             font-size: 0.96rem;
           }
 
+          .metric-grid,
+          .stats-row,
+          .feature-grid,
+          .why-grid {
+            grid-template-columns: 1fr;
+          }
+
+          .section {
+            padding: 68px 0;
+          }
+
           .cta-box {
-            padding: 42px 22px;
+            padding: 44px 22px;
           }
 
           .footer-card {
@@ -1253,6 +1268,10 @@ export default function QartloHome() {
             display: none;
           }
 
+          .nav-actions .btn-primary {
+            padding: 10px 14px;
+          }
+
           .hero-ctas,
           .cta-actions {
             flex-direction: column;
@@ -1264,8 +1283,16 @@ export default function QartloHome() {
             width: 100%;
           }
 
-          .stats-row {
-            grid-template-columns: 1fr;
+          .hero-card,
+          .dashboard-body,
+          .about-card,
+          .about-feature-card,
+          .mockup-body {
+            padding: 22px;
+          }
+
+          .hero-card {
+            border-radius: 26px;
           }
         }
       `}</style>
@@ -1273,7 +1300,7 @@ export default function QartloHome() {
       <div className="page-shell">
         <nav className={`nav ${scrolled ? "scrolled" : ""}`}>
           <div className="container nav-inner">
-            <div className="nav-logo" onClick={() => router.push("/")}>
+            <div className="nav-logo" onClick={() => router.push("/")} role="button" tabIndex={0}>
               <div className="logo-mark">Q</div>
               <span>Qartlo</span>
             </div>
@@ -1285,12 +1312,8 @@ export default function QartloHome() {
             </ul>
 
             <div className="nav-actions">
-              <button className="btn btn-outline" onClick={() => router.push("/login")}>
-                Sign In
-              </button>
-              <button className="btn btn-primary" onClick={() => router.push("/login")}>
-                Start Free
-              </button>
+              <button className="btn btn-outline" onClick={goLogin}>Sign In</button>
+              <button className="btn btn-primary" onClick={goSignup}>Create Account</button>
             </div>
           </div>
         </nav>
@@ -1298,71 +1321,87 @@ export default function QartloHome() {
         <section className="hero">
           <div className="container hero-grid">
             <div className="reveal in">
-              <div className="hero-badge">Modern eCommerce platform for growing businesses</div>
+              <div className="hero-badge">✨ Modern eCommerce platform for growing businesses</div>
               <h1 className="hero-title">
-                Build and manage your store with <span className="accent">Qartlo</span>
+                Build your online store with <span className="accent">Qartlo</span>
               </h1>
               <p className="hero-sub">
-                Qartlo helps businesses create online stores, manage products, track orders,
-                accept payments, and grow faster with a clean and modern platform.
+                Create your store, manage products, receive orders, connect payments, and grow your business from one clean and simple dashboard.
               </p>
 
               <div className="hero-ctas">
-                <button className="btn btn-primary btn-lg" onClick={() => router.push("/login")}>
-                  Start Your Store Today
-                </button>
-                <button className="btn btn-outline btn-lg" onClick={() => router.push("/login")}>
-                  Sign In to Dashboard
-                </button>
+                <button className="btn btn-primary btn-lg" onClick={goSignup}>Start Your Store Today →</button>
+                <button className="btn btn-outline btn-lg" onClick={goLogin}>Sign In to Dashboard</button>
               </div>
 
-              <div className="hero-stats">
-                <div className="hero-stat">
-                  <strong>1K+</strong>
-                  <span>Active stores</span>
-                </div>
-                
-                <div className="hero-stat">
-                  <strong>99.9%</strong>
-                  <span>Platform uptime</span>
-                </div>
+              <div className="hero-trust">
+                <span className="trust-pill">⚡ Quick setup</span>
+                <span className="trust-pill">🌐 Custom domain ready</span>
+                <span className="trust-pill">📱 Mobile friendly</span>
               </div>
             </div>
 
             <div className="hero-card reveal in">
-              <div className="hero-card-top">
-                <div className="hero-card-icon">🛍️</div>
-                <div>
-                  <div className="hero-card-title">Welcome to Qartlo</div>
-                  <div className="hero-card-sub">
-                    Create your store, manage your business, and sell online with confidence.
+              <div className="dashboard-card">
+                <div className="dashboard-top">
+                  <div className="dash-dots">
+                    <span className="dot"></span>
+                    <span className="dot"></span>
+                    <span className="dot"></span>
                   </div>
+                  <div className="dash-label">Admin Dashboard</div>
                 </div>
-              </div>
 
-              <div className="hero-mini-grid">
-                <div className="hero-mini-card">
-                  <strong>Products</strong>
-                  <span>Manage inventory, pricing, categories, and product details.</span>
-                </div>
-                <div className="hero-mini-card">
-                  <strong>Orders</strong>
-                  <span>Track orders, payments, and customer activity in one place.</span>
-                </div>
-                <div className="hero-mini-card">
-                  <strong>Reports</strong>
-                  <span>Monitor store performance with clean analytics and insights.</span>
-                </div>
-                <div className="hero-mini-card">
-                  <strong>Store Control</strong>
-                  <span>Run your business with a faster and simpler admin experience.</span>
+                <div className="dashboard-body">
+                  <div className="dash-welcome">
+                    <div>
+                      <h3>Welcome to Qartlo</h3>
+                      <p>Manage products, orders, customers, and store settings in one place.</p>
+                    </div>
+                    <div className="dash-icon">🛍️</div>
+                  </div>
+
+                  <div className="metric-grid">
+                    <div className="metric-card">
+                      <span>Total Sales</span>
+                      <strong>₹2.4L</strong>
+                    </div>
+                    <div className="metric-card">
+                      <span>Orders</span>
+                      <strong>1,245</strong>
+                    </div>
+                    <div className="metric-card">
+                      <span>Customers</span>
+                      <strong>892</strong>
+                    </div>
+                  </div>
+
+                  <div className="chart-box">
+                    <div className="chart-head">
+                      <strong>Store Growth</strong>
+                      <span>+18.4%</span>
+                    </div>
+                    <div className="fake-chart" aria-hidden="true">
+                      <svg viewBox="0 0 500 150" preserveAspectRatio="none">
+                        <path d="M0,105 C60,90 75,48 135,68 C190,86 210,124 270,72 C325,24 350,56 390,44 C430,32 455,24 500,18" fill="none" stroke="#198f7d" strokeWidth="6" strokeLinecap="round" />
+                        <path d="M0,105 C60,90 75,48 135,68 C190,86 210,124 270,72 C325,24 350,56 390,44 C430,32 455,24 500,18 L500,150 L0,150 Z" fill="rgba(25, 143, 125, 0.11)" />
+                      </svg>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </section>
 
-        
+        <section className="section section-soft" ref={statsRef}>
+          <div className="container stats-row">
+            <div className="stat-card reveal"><strong>{fmtNum(counters.stores)}</strong><span>Stores supported</span></div>
+            <div className="stat-card reveal"><strong>{fmtNum(counters.orders)}</strong><span>Orders processed</span></div>
+            <div className="stat-card reveal"><strong>{fmtNum(counters.merchants)}</strong><span>Growing merchants</span></div>
+            <div className="stat-card reveal"><strong>{counters.uptime.toFixed(1)}%</strong><span>Platform uptime</span></div>
+          </div>
+        </section>
 
         <section className="section">
           <div className="container">
@@ -1370,26 +1409,19 @@ export default function QartloHome() {
               <div className="card about-card reveal">
                 <div className="eyebrow">About Qartlo</div>
                 <h3>The smarter way to sell online</h3>
-                <p>
-                  Qartlo is a modern eCommerce platform designed to help businesses create
-                  and manage their own online stores with ease. It brings together products,
-                  orders, customers, payments, and store control in one clean system.
-                </p>
-                <p>
-                  Whether you are just starting or already growing, Qartlo gives you a
-                  faster and simpler way to run your online business with confidence.
-                </p>
+                <p>Qartlo is a modern eCommerce platform that helps businesses create and manage online stores with ease. It brings products, orders, customers, payments, and store settings into one clean system.</p>
+                <p>Whether you are starting your first store or managing a growing business, Qartlo gives you a faster and simpler way to sell online with confidence.</p>
               </div>
 
               <div className="card about-feature-card reveal">
                 <div className="big-mark">Q</div>
                 <h4>Everything your store needs. Clean, modern, and built to scale.</h4>
                 <ul className="check-list">
-                  <li>Simple and user-friendly interface</li>
-                  <li>Designed for modern online businesses</li>
-                  <li>Scalable for growing stores</li>
-                  <li>Secure and reliable platform</li>
-                  <li>Complete control over your store</li>
+                  <li>Simple and user-friendly admin interface</li>
+                  <li>Product, category, customer, and order management</li>
+                  <li>Custom domain support for branded store links</li>
+                  <li>Mobile-ready storefront and checkout experience</li>
+                  <li>Secure and scalable platform for growing businesses</li>
                 </ul>
               </div>
             </div>
@@ -1401,10 +1433,7 @@ export default function QartloHome() {
             <div className="section-header reveal">
               <div className="eyebrow">Platform Features</div>
               <h2 className="section-title">Everything a modern store needs</h2>
-              <p className="section-sub">
-                From setup to selling, Qartlo gives you the tools to manage your store
-                smoothly and grow your business online.
-              </p>
+              <p className="section-sub">From setup to selling, Qartlo gives you the tools to manage your store smoothly and grow your business online.</p>
             </div>
 
             <div className="feature-grid">
@@ -1424,19 +1453,13 @@ export default function QartloHome() {
             <div className="section-header reveal">
               <div className="eyebrow">How It Works</div>
               <h2 className="section-title">Go live in four simple steps</h2>
-              <p className="section-sub">
-                No complicated process. Just create your store, add products, and start selling.
-              </p>
+              <p className="section-sub">No complicated process. Create your account, build your store, share your link, and start receiving orders.</p>
             </div>
 
             <div className="how-grid">
               <div className="steps-panel reveal">
                 {steps.map((step, index) => (
-                  <div
-                    key={step.num}
-                    className={`step-item ${activeStep === index ? "active" : ""}`}
-                    onClick={() => setActiveStep(index)}
-                  >
+                  <div key={step.num} className={`step-item ${activeStep === index ? "active" : ""}`} onClick={() => setActiveStep(index)}>
                     <div className="step-label">Step {step.num}</div>
                     <div className="step-title">{step.title}</div>
                     <div className="step-desc">{step.desc}</div>
@@ -1446,9 +1469,8 @@ export default function QartloHome() {
 
               <div className="mockup-card reveal">
                 <div className="mockup-top">
-                  <div className="dot"></div>
-                  <div className="dot"></div>
-                  <div className="dot"></div>
+                  <div className="dash-dots"><span className="dot"></span><span className="dot"></span><span className="dot"></span></div>
+                  <div className="mockup-url">app.qartlo.com</div>
                 </div>
 
                 <div className="mockup-body">
@@ -1459,12 +1481,7 @@ export default function QartloHome() {
 
                   <div className="prog">
                     {steps.map((_, index) => (
-                      <button
-                        key={index}
-                        className={activeStep === index ? "active" : ""}
-                        onClick={() => setActiveStep(index)}
-                        aria-label={`Go to step ${index + 1}`}
-                      />
+                      <button key={index} className={activeStep === index ? "active" : ""} onClick={() => setActiveStep(index)} aria-label={`Go to step ${index + 1}`} />
                     ))}
                   </div>
                 </div>
@@ -1491,8 +1508,6 @@ export default function QartloHome() {
           </div>
         </section>
 
-      
-
         <section className="section section-soft" id="faq">
           <div className="container">
             <div className="faq-wrap">
@@ -1504,16 +1519,11 @@ export default function QartloHome() {
               <div className="faq-list">
                 {faqs.map((faq, index) => (
                   <div className="faq-item reveal" key={faq.q}>
-                    <button
-                      className="faq-btn"
-                      onClick={() => setOpenFaq(openFaq === index ? null : index)}
-                    >
+                    <button className="faq-btn" onClick={() => setOpenFaq(openFaq === index ? null : index)} aria-expanded={openFaq === index}>
                       <span>{faq.q}</span>
                       <span>{openFaq === index ? "−" : "+"}</span>
                     </button>
-                    <div className={`faq-answer ${openFaq === index ? "open" : ""}`}>
-                      {faq.a}
-                    </div>
+                    <div className={`faq-answer ${openFaq === index ? "open" : ""}`}>{faq.a}</div>
                   </div>
                 ))}
               </div>
@@ -1525,17 +1535,10 @@ export default function QartloHome() {
           <div className="container">
             <div className="cta-box reveal">
               <h2>Start your online business with Qartlo today</h2>
-              <p>
-                Build your store, manage your products, accept orders, and grow faster with
-                a clean platform made for modern businesses.
-              </p>
+              <p>Build your store, manage products, receive orders, and grow faster with a platform made for modern businesses.</p>
               <div className="cta-actions">
-                <button className="btn btn-primary btn-lg" onClick={() => router.push("/login")}>
-                  Create Your Store Now
-                </button>
-                <button className="btn btn-outline btn-lg" onClick={() => router.push("/login")}>
-                  Sign In
-                </button>
+                <button className="btn btn-primary btn-lg" onClick={goSignup}>Create Your Account →</button>
+                <button className="btn btn-outline btn-lg" onClick={goLogin}>Already have an account? Sign In</button>
               </div>
             </div>
           </div>
@@ -1546,55 +1549,41 @@ export default function QartloHome() {
             <div className="footer-card">
               <div className="footer-top">
                 <div>
-                  <div className="footer-brand">
-                    <div className="logo-mark">Q</div>
-                    <span>Qartlo</span>
-                  </div>
-                  <p className="footer-brand-p">
-                    Qartlo is an all-in-one eCommerce platform that helps businesses create,
-                    manage, and grow online stores with a clean and modern experience.
-                  </p>
+                  <div className="footer-brand"><div className="logo-mark">Q</div><span>Qartlo</span></div>
+                  <p className="footer-brand-p">Qartlo is an all-in-one eCommerce platform that helps businesses create, manage, and grow online stores with a clean and modern experience.</p>
                 </div>
 
                 <div>
                   <div className="footer-title">Platform</div>
                   <ul className="footer-links">
                     <li><a href="#features">Features</a></li>
-                    <li><a href="#pricing">Pricing</a></li>
                     <li><a href="#how">How It Works</a></li>
                     <li><a href="#faq">FAQ</a></li>
                   </ul>
                 </div>
 
                 <div>
-                  <div className="footer-title">Company</div>
+                  <div className="footer-title">Account</div>
                   <ul className="footer-links">
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Contact</a></li>
-                    <li><a href="#">Support</a></li>
-                    <li><a href="#">Careers</a></li>
+                    <li><button className="footer-link-btn" onClick={goLogin}>Sign In</button></li>
+                    <li><button className="footer-link-btn" onClick={goSignup}>Create Account</button></li>
+                    <li><a href="#features">Explore Features</a></li>
                   </ul>
                 </div>
 
                 <div>
-                  <div className="footer-title">Legal</div>
+                  <div className="footer-title">Support</div>
                   <ul className="footer-links">
-                    <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Terms of Service</a></li>
-                    <li><a href="#">Help Center</a></li>
-                    <li><a href="#">Security</a></li>
+                    <li><a href="#faq">Help Center</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                    <li><a href="#how">Setup Guide</a></li>
                   </ul>
                 </div>
               </div>
 
               <div className="footer-bottom">
-                <div className="footer-copy">
-                  © {new Date().getFullYear()} Qartlo. All rights reserved.
-                </div>
-                <div className="footer-seo">
-                  Qartlo · online store builder · eCommerce platform · create online shop ·
-                  sell products online · store management system · business commerce platform
-                </div>
+                <div className="footer-copy">© {new Date().getFullYear()} Qartlo. All rights reserved.</div>
+                <div className="footer-seo">Qartlo · online store builder · eCommerce platform · create online shop · sell products online</div>
               </div>
             </div>
           </div>
