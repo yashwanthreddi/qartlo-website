@@ -1,5 +1,6 @@
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+
 import HeroSection from "@/components/home/HeroSection";
 import StatsSection from "@/components/home/StatsSection";
 import AboutSection from "@/components/home/AboutSection";
@@ -9,18 +10,56 @@ import WhyChooseSection from "@/components/home/WhyChooseSection";
 import FaqSection from "@/components/home/FaqSection";
 import CtaSection from "@/components/home/CtaSection";
 
+export const metadata = {
+  title: "Qartlo | Online Store Builder for WhatsApp-First Businesses",
+  description:
+    "Create a professional online store with Qartlo. Manage products, share your store link, receive WhatsApp-ready orders, and grow your business from one simple dashboard.",
+  keywords: [
+    "Qartlo",
+    "online store builder",
+    "WhatsApp commerce",
+    "eCommerce platform India",
+    "product catalog builder",
+    "custom domain store",
+    "small business online store",
+  ],
+  openGraph: {
+    title: "Qartlo | Build Your Online Store in Minutes",
+    description:
+      "Launch a branded online store, manage products, receive orders, and sell through a mobile-first commerce experience.",
+    type: "website",
+  },
+};
+
 export default function HomePage() {
   return (
     <main className="page-shell">
       <Navbar />
+
+      {/* Hero: Main positioning */}
       <HeroSection />
+
+      {/* Trust indicators / quick proof */}
       <StatsSection />
+
+      {/* What Qartlo does */}
       <AboutSection />
+
+      {/* Core product capabilities */}
       <FeaturesSection />
+
+      {/* Setup journey */}
       <HowItWorksSection />
+
+      {/* Differentiation */}
       <WhyChooseSection />
+
+      {/* Objection handling */}
       <FaqSection />
+
+      {/* Final conversion block */}
       <CtaSection />
+
       <Footer />
     </main>
   );

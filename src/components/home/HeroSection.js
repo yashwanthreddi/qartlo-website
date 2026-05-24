@@ -5,23 +5,22 @@ export default function HeroSection() {
     <section className="hero">
       <div className="container hero-grid">
         <div>
-          <div className="hero-badge">
-            ✨ Modern eCommerce platform for growing businesses
-          </div>
+          
 
           <h1 className="hero-title">
-            Build your online store with <span className="accent">Qartlo</span>
+            Launch a professional <span className="accent">online store</span> for your business in minutes
+         
           </h1>
 
           <p className="hero-sub">
-            Create your store, manage products, receive orders, connect
-            payments, and grow your business from one clean and simple
-            dashboard.
+            Qartlo helps businesses create a professional online catalog, manage
+            products, accept customer orders, and share a store link instantly —
+            all from one simple dashboard.
           </p>
 
           <div className="hero-ctas">
             <a className="btn btn-primary btn-lg" href={routes.signup}>
-              Start Your Store Today →
+              Start Free Trial →
             </a>
 
             <a className="btn btn-outline btn-lg" href={routes.login}>
@@ -30,9 +29,10 @@ export default function HeroSection() {
           </div>
 
           <div className="hero-trust">
-            <span className="trust-pill">⚡ Quick setup</span>
+            <span className="trust-pill">⚡ Setup in minutes</span>
+            <span className="trust-pill">📱 Mobile-first storefront</span>
             <span className="trust-pill">🌐 Custom domain ready</span>
-            <span className="trust-pill">📱 Mobile friendly</span>
+            <span className="trust-pill">💬 WhatsApp order flow</span>
           </div>
         </div>
 
@@ -44,41 +44,43 @@ export default function HeroSection() {
                 <span className="dot" />
                 <span className="dot" />
               </div>
-              <div className="dash-label">Admin Dashboard</div>
+
+              <div className="dash-label">Live Store Dashboard</div>
             </div>
 
             <div className="dashboard-body">
               <div className="dash-welcome">
                 <div>
-                  <h3>Welcome to Qartlo</h3>
+                  <h3>Ambica Fashion Store</h3>
                   <p>
-                    Manage products, orders, customers, and store settings in
-                    one place.
+                    Track orders, products, customers, and store activity from
+                    one clean admin panel.
                   </p>
                 </div>
+
                 <div className="dash-icon">🛍️</div>
               </div>
 
               <div className="metric-grid">
                 <div className="metric-card">
-                  <span>Total Sales</span>
-                  <strong>₹2.4L</strong>
+                  <span>Today’s Orders</span>
+                  <strong>42</strong>
                 </div>
 
                 <div className="metric-card">
-                  <span>Orders</span>
-                  <strong>1,245</strong>
+                  <span>Products</span>
+                  <strong>318</strong>
                 </div>
 
                 <div className="metric-card">
-                  <span>Customers</span>
-                  <strong>892</strong>
+                  <span>Revenue</span>
+                  <strong>₹68.4K</strong>
                 </div>
               </div>
 
               <div className="chart-box">
                 <div className="chart-head">
-                  <strong>Store Growth</strong>
+                  <strong>Weekly Store Growth</strong>
                   <span>+18.4%</span>
                 </div>
 
@@ -87,15 +89,33 @@ export default function HeroSection() {
                     <path
                       d="M0,105 C60,90 75,48 135,68 C190,86 210,124 270,72 C325,24 350,56 390,44 C430,32 455,24 500,18"
                       fill="none"
-                      stroke="#198f7d"
+                      stroke="currentColor"
                       strokeWidth="6"
                       strokeLinecap="round"
                     />
                     <path
                       d="M0,105 C60,90 75,48 135,68 C190,86 210,124 270,72 C325,24 350,56 390,44 C430,32 455,24 500,18 L500,150 L0,150 Z"
-                      fill="rgba(25, 143, 125, 0.11)"
+                      fill="currentColor"
+                      opacity="0.1"
                     />
                   </svg>
+                </div>
+              </div>
+
+              <div className="hero-mini-flow">
+                <div>
+                  <span>01</span>
+                  <strong>Add products</strong>
+                </div>
+
+                <div>
+                  <span>02</span>
+                  <strong>Share store link</strong>
+                </div>
+
+                <div>
+                  <span>03</span>
+                  <strong>Receive orders</strong>
                 </div>
               </div>
             </div>

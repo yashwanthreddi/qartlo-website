@@ -4,12 +4,37 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { routes } from "@/lib/routes";
 
+const navItems = [
+  {
+    label: "App",
+    href: "/app",
+  },
+  {
+    label: "Features",
+    href: "/features",
+  },
+  {
+    label: "Pricing",
+    href: "/pricing",
+  },
+  {
+    label: "About",
+    href: "/about",
+  },
+  {
+    label: "Contact",
+    href: "/contact",
+  },
+];
+
 export default function Navbar() {
   const router = useRouter();
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 18);
+    const onScroll = () => {
+      setScrolled(window.scrollY > 18);
+    };
 
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
@@ -31,18 +56,11 @@ export default function Navbar() {
         </button>
 
         <ul className="nav-links">
-          <li>
-            <a href="/features">Features</a>
-          </li>
-          <li>
-            <a href="/pricing">Pricing</a>
-          </li>
-          <li>
-            <a href="/about">About</a>
-          </li>
-          <li>
-            <a href="/contact">Contact</a>
-          </li>
+          {navItems.map((item) => (
+            <li key={item.href}>
+              <a href={item.href}>{item.label}</a>
+            </li>
+          ))}
         </ul>
 
         <div className="nav-actions">
@@ -59,7 +77,7 @@ export default function Navbar() {
             className="btn btn-primary"
             onClick={() => router.push(routes.signup)}
           >
-            Create Account
+            Start Free Trial
           </button>
         </div>
       </div>
