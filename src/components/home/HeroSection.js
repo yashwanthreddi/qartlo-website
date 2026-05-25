@@ -10,14 +10,11 @@ export default function HeroSection() {
 
       <div className="container hero-grid">
         <div className="hero-content">
-          <div className="hero-kicker">
-            <span />
-            Online store builder for modern businesses
-          </div>
+          
 
           <h1 className="hero-title">
             Launch a professional{" "}
-            <span className="accent">online store </span> for your business in
+            <span className="accent">online store</span> for your business in
             minutes
           </h1>
 
@@ -61,10 +58,6 @@ export default function HeroSection() {
               </div>
             </div>
           </div>
-
-        
-
-        
         </div>
       </div>
 
@@ -74,9 +67,9 @@ export default function HeroSection() {
           overflow: hidden;
           background:
             radial-gradient(circle at 12% 20%, rgba(18, 140, 126, 0.14), transparent 34%),
-            radial-gradient(circle at 90% 24%, rgba(37, 99, 235, 0.12), transparent 32%),
-            linear-gradient(180deg, #f8fafc 0%, #ffffff 52%, #eef5f4 100%);
-          padding: 88px 0 82px;
+            radial-gradient(circle at 90% 24%, rgba(37, 99, 235, 0.10), transparent 32%),
+            linear-gradient(180deg, #f8fafc 0%, #ffffff 56%, #eef5f4 100%);
+          padding: 92px 0 86px;
         }
 
         .hero-glow {
@@ -85,7 +78,7 @@ export default function HeroSection() {
           height: 360px;
           border-radius: 999px;
           filter: blur(80px);
-          opacity: 0.32;
+          opacity: 0.28;
           pointer-events: none;
         }
 
@@ -105,7 +98,7 @@ export default function HeroSection() {
           width: 100%;
           max-width: 1220px;
           margin: 0 auto;
-          padding: 0 16px;
+          padding: 0 20px;
         }
 
         .hero-grid {
@@ -114,7 +107,7 @@ export default function HeroSection() {
           display: grid;
           grid-template-columns: minmax(0, 1fr) minmax(0, 0.95fr);
           align-items: center;
-          gap: 54px;
+          gap: 56px;
         }
 
         .hero-content {
@@ -130,7 +123,8 @@ export default function HeroSection() {
           background: rgba(18, 140, 126, 0.08);
           padding: 9px 14px;
           font-size: 14px;
-          font-weight: 850;
+          font-weight: 800;
+          line-height: 1;
           color: #0f766e;
           box-shadow: 0 12px 28px rgba(15, 118, 110, 0.08);
         }
@@ -138,17 +132,27 @@ export default function HeroSection() {
         .hero-kicker span {
           width: 8px;
           height: 8px;
+          flex: 0 0 auto;
           border-radius: 50%;
           background: #10b981;
           box-shadow: 0 0 0 6px rgba(16, 185, 129, 0.14);
         }
 
         .hero-title {
-          margin: 22px 0 0;
-          font-size: clamp(42px, 5vw, 70px);
-          font-weight: 950;
+          margin: 24px 0 0;
+          max-width: 680px;
+          font-family:
+            Inter,
+            ui-sans-serif,
+            system-ui,
+            -apple-system,
+            BlinkMacSystemFont,
+            "Segoe UI",
+            sans-serif;
+          font-size: clamp(48px, 5vw, 72px);
+          font-weight: 900;
           line-height: 0.98;
-          letter-spacing: -0.07em;
+          letter-spacing: -0.055em;
           color: #07111f;
         }
 
@@ -162,8 +166,17 @@ export default function HeroSection() {
         .hero-sub {
           max-width: 590px;
           margin: 24px 0 0;
+          font-family:
+            Inter,
+            ui-sans-serif,
+            system-ui,
+            -apple-system,
+            BlinkMacSystemFont,
+            "Segoe UI",
+            sans-serif;
           font-size: 18px;
-          line-height: 1.8;
+          line-height: 1.75;
+          letter-spacing: -0.01em;
           color: #475569;
         }
 
@@ -180,9 +193,18 @@ export default function HeroSection() {
           justify-content: center;
           min-height: 54px;
           border-radius: 999px;
-          padding: 15px 22px;
+          padding: 14px 24px;
+          font-family:
+            Inter,
+            ui-sans-serif,
+            system-ui,
+            -apple-system,
+            BlinkMacSystemFont,
+            "Segoe UI",
+            sans-serif;
           font-size: 15px;
-          font-weight: 900;
+          font-weight: 800;
+          line-height: 1;
           text-decoration: none;
           transition:
             transform 0.2s ease,
@@ -198,7 +220,7 @@ export default function HeroSection() {
 
         .btn-light {
           border: 1px solid rgba(15, 23, 42, 0.1);
-          background: rgba(255, 255, 255, 0.86);
+          background: rgba(255, 255, 255, 0.88);
           color: #0f172a;
           box-shadow: 0 14px 30px rgba(15, 23, 42, 0.07);
           backdrop-filter: blur(14px);
@@ -227,15 +249,27 @@ export default function HeroSection() {
         .hero-trust span {
           display: inline-flex;
           align-items: center;
+          justify-content: center;
+          min-height: 40px;
           border: 1px solid rgba(15, 23, 42, 0.08);
           border-radius: 999px;
-          background: rgba(255, 255, 255, 0.78);
-          padding: 9px 12px;
+          background: rgba(255, 255, 255, 0.8);
+          padding: 9px 13px;
+          font-family:
+            Inter,
+            ui-sans-serif,
+            system-ui,
+            -apple-system,
+            BlinkMacSystemFont,
+            "Segoe UI",
+            sans-serif;
           font-size: 13px;
-          font-weight: 800;
+          font-weight: 750;
+          line-height: 1.2;
           color: #334155;
           box-shadow: 0 10px 24px rgba(15, 23, 42, 0.06);
           backdrop-filter: blur(12px);
+          white-space: nowrap;
         }
 
         .hero-preview {
@@ -311,24 +345,27 @@ export default function HeroSection() {
           height: 100%;
           object-fit: cover;
           object-position: top center;
-          transform: none;
         }
 
-        
         @media (max-width: 980px) {
           .hero {
-            padding: 64px 0;
+            padding: 68px 0 64px;
           }
 
           .hero-grid {
             grid-template-columns: 1fr;
-            gap: 36px;
+            gap: 38px;
           }
 
           .hero-content {
             max-width: 760px;
             margin: 0 auto;
             text-align: center;
+          }
+
+          .hero-title {
+            margin-left: auto;
+            margin-right: auto;
           }
 
           .hero-sub {
@@ -342,94 +379,152 @@ export default function HeroSection() {
           }
 
           .hero-preview {
-            height: 540px;
+            height: 520px;
             overflow: hidden;
-          }
-
-          .preview-pill-left {
-            left: 110px;
-          }
-
-          .preview-pill-right {
-            right: 100px;
           }
         }
 
         @media (max-width: 640px) {
           .hero {
-            padding: 48px 0;
+            padding: 52px 0 42px;
           }
 
           .container {
-            padding: 0 14px;
+            padding: 0 18px;
+          }
+
+          .hero-grid {
+            gap: 34px;
+          }
+
+          .hero-content {
+            max-width: 100%;
+          }
+
+          .hero-kicker {
+            max-width: 100%;
+            padding: 9px 12px;
+            font-size: 12.5px;
+            font-weight: 800;
+            line-height: 1.25;
           }
 
           .hero-title {
-            font-size: 42px;
-            letter-spacing: -0.055em;
+            margin-top: 22px;
+            font-size: clamp(38px, 11vw, 48px);
+            line-height: 1.02;
+            letter-spacing: -0.045em;
           }
 
           .hero-sub {
-            font-size: 16px;
+            margin-top: 20px;
+            max-width: 96%;
+            font-size: 15.5px;
+            line-height: 1.68;
+            letter-spacing: -0.01em;
           }
 
           .hero-ctas {
-            flex-direction: column;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+            margin-top: 28px;
           }
 
           .btn {
             width: 100%;
+            min-height: 56px;
+            padding: 14px 18px;
+            font-size: 15px;
+          }
+
+          .hero-trust {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 26px;
+          }
+
+          .hero-trust span {
+            width: 100%;
+            min-height: 44px;
+            padding: 9px 10px;
+            font-size: 12.5px;
+            white-space: normal;
           }
 
           .hero-preview {
-            height: 490px;
+            height: 445px;
+            margin-top: 4px;
             overflow: hidden;
           }
 
           .preview-bg-card {
             width: 100%;
-            height: 330px;
+            height: 300px;
             border-radius: 32px;
-            transform: none;
-          }
-
-          .phone-device {
-            width: 260px;
-            height: 430px;
-            border-radius: 30px;
           }
 
           .phone-wrapper {
-            border-radius: 38px;
+            border-radius: 36px;
             padding: 8px;
+          }
+
+          .phone-device {
+            width: 250px;
+            height: 410px;
+            border-radius: 28px;
+          }
+
+          .phone-screen {
+            border-radius: 26px;
           }
 
           .phone-notch {
             width: 74px;
             height: 17px;
           }
-
-          .preview-pill {
-            display: none;
-          }
         }
 
         @media (max-width: 420px) {
+          .hero {
+            padding: 46px 0 36px;
+          }
+
+          .container {
+            padding: 0 16px;
+          }
+
           .hero-title {
-            font-size: 36px;
+            font-size: clamp(34px, 10.5vw, 42px);
+            letter-spacing: -0.04em;
+          }
+
+          .hero-sub {
+            font-size: 15px;
+            line-height: 1.65;
           }
 
           .hero-kicker {
             font-size: 12px;
           }
 
+          .hero-trust {
+            gap: 9px;
+          }
+
+          .hero-trust span {
+            min-height: 42px;
+            font-size: 12px;
+          }
+
           .hero-preview {
-            height: 455px;
+            height: 420px;
           }
 
           .phone-device {
-            width: 240px;
-            height: 400px;
+            width: 235px;
+            height: 390px;
           }
         }
       `}</style>

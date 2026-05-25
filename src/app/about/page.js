@@ -157,7 +157,7 @@ export default function AboutPage() {
         .about-bg-two {
           width: 360px;
           height: 360px;
-          right: -150px;
+          right: -70px;
           bottom: 80px;
           background: #60a5fa;
         }
@@ -539,6 +539,7 @@ export default function AboutPage() {
           .about-cta-row {
             flex-direction: column;
           }
+            
 
           .about-btn {
             width: 100%;

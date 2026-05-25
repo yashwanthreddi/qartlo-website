@@ -96,7 +96,7 @@ export default function FaqSection() {
         .faq-bg-two {
           width: 360px;
           height: 360px;
-          right: -150px;
+          right: -70px;
           bottom: 80px;
           background: #60a5fa;
         }
@@ -360,6 +360,7 @@ export default function FaqSection() {
             padding: 0 20px 20px;
             font-size: 15px;
           }
+            
         }
       `}</style>
     </section>

@@ -110,7 +110,7 @@ export default function AboutSection() {
         .about-bg-two {
           width: 360px;
           height: 360px;
-          right: -150px;
+          right: -70px;
           bottom: 70px;
           background: #60a5fa;
         }
@@ -394,6 +394,7 @@ export default function AboutSection() {
             grid-template-columns: 1fr;
             border-radius: 24px;
           }
+            
         }
       `}</style>
     </section>

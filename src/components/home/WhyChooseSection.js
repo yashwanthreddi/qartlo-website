@@ -67,7 +67,7 @@ export default function WhyChooseSection() {
         .why-bg-two {
           width: 360px;
           height: 360px;
-          right: -150px;
+          right: -70px;
           bottom: 80px;
           background: #60a5fa;
         }
@@ -251,6 +251,18 @@ export default function WhyChooseSection() {
             border-radius: 24px;
             padding: 24px;
           }
+            @media (max-width: 640px) {
+  .hero-glow-right,
+  .section-glow-right,
+  .glow-right,
+  .legal-glow-right,
+  .page-glow-right,
+  .bg-glow-right {
+    right: -70px !important;
+    width: 180px !important;
+    height: 180px !important;
+  }
+}
 
           .why-card p {
             margin-top: 22px;

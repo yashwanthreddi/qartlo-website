@@ -190,7 +190,7 @@ export default function PricingPage() {
         .pricing-bg-two {
           width: 360px;
           height: 360px;
-          right: -150px;
+          right: -70px;
           bottom: 80px;
           background: #60a5fa;
         }
@@ -288,6 +288,7 @@ export default function PricingPage() {
           box-shadow: 0 34px 90px rgba(15, 23, 42, 0.12);
         }
 
+        
         .pricing-card-highlighted {
           border-color: rgba(18, 140, 126, 0.28);
           background:

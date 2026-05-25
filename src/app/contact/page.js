@@ -172,7 +172,7 @@ export default function ContactPage() {
         .contact-bg-two {
           width: 360px;
           height: 360px;
-          right: -150px;
+          right: -70px;
           bottom: 80px;
           background: #60a5fa;
         }
@@ -565,6 +565,7 @@ export default function ContactPage() {
           .contact-btn {
             width: 100%;
           }
+            
 
           .contact-info-item {
             border-radius: 18px;
