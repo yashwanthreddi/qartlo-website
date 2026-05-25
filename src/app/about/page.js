@@ -93,7 +93,7 @@ export default function AboutPage() {
             </div>
 
             <div>
-              <strong>₹399</strong>
+              <strong>₹499</strong>
               <span>Monthly plan</span>
             </div>
 
