@@ -1,33 +1,33 @@
 export const features = [
   {
-    icon: "🚀",
-    title: "Fast Store Setup",
-    desc: "Create your branded online store quickly with a simple guided setup experience.",
+    icon: "⚡",
+    title: "Go Live in 5 Minutes",
+    desc: "Create your store, add products, set prices, and start sharing your online store link quickly.",
+  },
+  {
+    icon: "💬",
+    title: "Orders Via WhatsApp",
+    desc: "Customers can browse your products and place orders directly through WhatsApp without downloading any app.",
+  },
+  {
+    icon: "₹",
+    title: "Zero Transaction Fees",
+    desc: "Keep 100% of your sales. Qartlo does not charge commission on every order you receive.",
   },
   {
     icon: "📦",
     title: "Product Management",
-    desc: "Add products, categories, prices, stock, images, and descriptions from one dashboard.",
+    desc: "Add products, categories, prices, images, stock, and descriptions from one simple dashboard.",
   },
   {
-    icon: "🛒",
-    title: "Smooth Checkout",
-    desc: "Give customers a simple buying experience with cart, checkout, and order confirmation.",
-  },
-  {
-    icon: "💳",
-    title: "Online Payments",
-    desc: "Connect secure payment options and receive paid orders directly through your store.",
-  },
-  {
-    icon: "📊",
-    title: "Orders & Reports",
-    desc: "Track orders, customers, revenue, and store performance with clean business insights.",
+    icon: "📱",
+    title: "Mobile-First Storefront",
+    desc: "Give your customers a smooth shopping experience on mobile, tablet, and desktop devices.",
   },
   {
     icon: "🌐",
     title: "Custom Domain Ready",
-    desc: "Use your own domain or subdomain and give every store a professional branded link.",
+    desc: "Use your own domain or subdomain to create a professional branded store link for your business.",
   },
 ];
 
@@ -35,56 +35,75 @@ export const steps = [
   {
     num: "01",
     title: "Create your account",
-    desc: "Sign up and open your Qartlo admin dashboard.",
+    desc: "Sign up and open your Qartlo admin dashboard in minutes.",
     icon: "👤",
   },
   {
     num: "02",
-    title: "Build your store",
-    desc: "Add store details, branding, categories, and products.",
-    icon: "🏪",
+    title: "Add your products",
+    desc: "Upload product photos, add names, prices, categories, and stock details.",
+    icon: "📦",
   },
   {
     num: "03",
     title: "Share your store link",
-    desc: "Start selling with your Qartlo link or connect a custom domain.",
+    desc: "Share your store link with customers on WhatsApp, Instagram, Facebook, or your custom domain.",
     icon: "🔗",
   },
   {
     num: "04",
-    title: "Manage orders",
-    desc: "Receive orders, check payments, and manage customers from one place.",
-    icon: "🎉",
+    title: "Receive WhatsApp orders",
+    desc: "Customers place orders through WhatsApp, and you can manage them easily from your dashboard.",
+    icon: "💬",
   },
 ];
 
 export const whys = [
-  { icon: "⚡", text: "Quick setup for non-technical users" },
-  { icon: "🧩", text: "Everything managed from one dashboard" },
-  { icon: "📱", text: "Mobile-friendly storefront experience" },
-  { icon: "🔐", text: "Secure admin and payment-ready flow" },
-  { icon: "🌱", text: "Built to grow with your business" },
+  {
+    icon: "⚡",
+    text: "Launch your online store in minutes without coding",
+  },
+  {
+    icon: "💬",
+    text: "Accept customer orders directly through WhatsApp",
+  },
+  {
+    icon: "₹",
+    text: "Zero transaction fees on customer orders",
+  },
+  {
+    icon: "📱",
+    text: "Mobile-first storefront built for Indian businesses",
+  },
 ];
 
 export const faqs = [
   {
     q: "How quickly can I launch my store?",
-    a: "You can create your account, add store details, upload products, and start sharing your store link quickly. The process is designed to be simple for business owners.",
+    a: "You can launch your Qartlo store in around 5 minutes. Create your account, add your store details, upload products, set prices, and start sharing your store link with customers.",
   },
   {
     q: "Do I need technical knowledge?",
-    a: "No. Qartlo is designed for business owners and teams who want to manage products, orders, customers, and store settings without complex technical work.",
+    a: "No. Qartlo is built for business owners who want to sell online without coding, developers, or complicated setup. You can manage products, orders, customers, and store settings from one simple dashboard.",
+  },
+  {
+    q: "How do customers place orders?",
+    a: "Customers can browse your online store, add products, and place orders through WhatsApp. This makes the buying process simple because customers do not need to download a separate app.",
+  },
+  {
+    q: "Does Qartlo charge transaction fees?",
+    a: "No. Qartlo does not charge transaction fees or commission on every order. You keep 100% of your sales apart from any payment gateway charges if online payments are enabled.",
   },
   {
     q: "Can I use a custom domain?",
-    a: "Yes. You can connect a custom domain or subdomain to your store so customers can visit your business using a branded website link.",
+    a: "Yes. You can connect your own domain or subdomain to your Qartlo store, so your customers can visit your business through a professional branded link.",
   },
   {
-    q: "Can I accept online payments?",
-    a: "Yes. Qartlo can be connected with secure payment options so customers can complete purchases online.",
+    q: "What is the pricing?",
+    a: "Qartlo starts at ₹399 per month with a 7-day free trial. There is no charge today during the free trial, and you can cancel anytime.",
   },
   {
     q: "Is Qartlo mobile-friendly?",
-    a: "Yes. The storefront and admin experience are designed to work smoothly on desktop, tablet, and mobile devices.",
+    a: "Yes. Qartlo is designed with a mobile-first experience so your store works smoothly on phones, tablets, and desktops.",
   },
 ];

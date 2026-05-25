@@ -2,13 +2,13 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 
 import HeroSection from "@/components/home/HeroSection";
-import StatsSection from "@/components/home/StatsSection";
+
 import AboutSection from "@/components/home/AboutSection";
 import FeaturesSection from "@/components/home/FeaturesSection";
 import HowItWorksSection from "@/components/home/HowItWorksSection";
 import WhyChooseSection from "@/components/home/WhyChooseSection";
 import FaqSection from "@/components/home/FaqSection";
-import CtaSection from "@/components/home/CtaSection";
+
 
 export const metadata = {
   title: "Qartlo | Online Store Builder for WhatsApp-First Businesses",
@@ -39,8 +39,8 @@ export default function HomePage() {
       {/* Hero: Main positioning */}
       <HeroSection />
 
-      {/* Trust indicators / quick proof */}
-      <StatsSection />
+    
+     
 
       {/* What Qartlo does */}
       <AboutSection />
@@ -57,8 +57,7 @@ export default function HomePage() {
       {/* Objection handling */}
       <FaqSection />
 
-      {/* Final conversion block */}
-      <CtaSection />
+      
 
       <Footer />
     </main>
